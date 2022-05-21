@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  REDIS_URL: 'redis://default:Dwz53URFk47e2DOWxhnheylnXoK46YW9@redis-14509.c299.asia-northeast1-1.gce.cloud.redislabs.com:14509'
 };
 
 /*
