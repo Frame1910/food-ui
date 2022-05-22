@@ -1,7 +1,24 @@
-<div
-  style="display: flex; justify-content: center; width: 100vw; margin-top: 25px"
->
-  <mat-form-field>
-    <input matInput type="text" placeholder="Start typing..." />
+<div class="search-bar">
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Start typing..."
+      [formControl]="term"
+    />
   </mat-form-field>
+</div>
+
+<div class="search-bar">
+  <mat-spinner diameter="40" *ngIf="isLoading"></mat-spinner>
+  <mat-selection-list class="results" *ngIf="results" [multiple]="false">
+    <div mat-subheader>{{ results.length }} results</div>
+    <mat-divider></mat-divider>
+    <mat-list-option *ngFor="let result of results">
+      <mat-icon mat-list-icon>restaurant_menu</mat-icon>
+      <div mat-line>{{ result.food_name }}</div>
+      <div mat-line>{{ result.food_description }}</div>
+    </mat-list-option>
+  </mat-selection-list>
 </div>

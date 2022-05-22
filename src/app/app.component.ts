@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs';
+import { ApiService, Food } from './service/api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'redisTest';
 
+  term = new FormControl('');
+  results: Array<Food> | undefined;
+  isLoading: boolean = false;
+
   constructor(
+    private api: ApiService,
   ) { }
 
   ngOnInit(): void {
+    this.term.valueChanges.pipe(
+      debounceTime(400),
+    ).subscribe(term => {
+      this.isLoading = true
+      this.api.queryRedis(term).subscribe(results => {
+        this.results = results
+        this.isLoading = false;
+      });
+    })
   }
 }
