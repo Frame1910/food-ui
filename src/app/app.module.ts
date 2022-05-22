@@ -17,11 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FoodProfileComponent } from './food-profile/food-profile.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FoodProfileComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
