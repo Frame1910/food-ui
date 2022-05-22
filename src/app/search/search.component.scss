@@ -15,6 +15,7 @@
 .input {
   border: none;
   margin-left: 15px;
+  width: 90%;
 
   &:focus {
     outline: none;
@@ -30,10 +31,10 @@
   justify-content: flex-start;
   border-radius: 25px;
   @include mat.elevation-transition();
-  @include mat.elevation(2);
+  @include mat.elevation(3);
 
   &:hover {
-    @include mat.elevation(8);
+    @include mat.elevation(6);
   }
 
   &:focus-within {

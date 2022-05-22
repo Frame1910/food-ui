@@ -10,7 +10,7 @@
     />
     <button
       mat-icon-button
-      (click)="term.reset()"
+      (click)="term.setValue('')"
       *ngIf="term.value.length > 0"
       style="margin-left: auto; margin-right: 20px"
     >
@@ -27,7 +27,7 @@
     <mat-selection-list class="results" [multiple]="false">
       <mat-list-option
         *ngFor="let result of results"
-        [routerLink]="['food', result.public_food_key]"
+        [routerLink]="['/food', result.public_food_key]"
       >
         <mat-icon mat-list-icon>restaurant_menu</mat-icon>
         <div mat-line>{{ result.food_name }}</div>
