@@ -16,10 +16,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FoodProfileComponent } from './food-profile/food-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FoodProfileComponent,
   ],
   imports: [
     BrowserModule,
