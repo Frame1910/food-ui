@@ -1,10 +1,43 @@
-.search-bar {
+@use "@angular/material" as mat;
+@import "../styles.scss";
+
+.center-container {
   display: flex;
   justify-content: center;
   width: 100vw;
   margin-top: 40px;
 }
 .results {
-  width: 40vw;
-  max-height: 70vh;
+  width: 60vw;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+input {
+  border: none;
+  margin-left: 15px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.search-bar {
+  height: 50px;
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 25px;
+  @include mat.elevation-transition();
+  @include mat.elevation(2);
+
+  &:hover {
+    @include mat.elevation(8);
+  }
+
+  &:focus-within {
+    outline: 1px solid map-get($redisTest-primary, 600);
+    @include mat.elevation(8);
+  }
 }

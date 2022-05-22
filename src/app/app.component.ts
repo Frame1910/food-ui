@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'redisTest';
 
   term = new FormControl('');
-  results: Array<Food> | undefined;
+  results: Array<Food> = [];
   isLoading: boolean = false;
 
   constructor(
@@ -23,6 +23,9 @@ export class AppComponent implements OnInit {
     this.term.valueChanges.pipe(
       debounceTime(400),
     ).subscribe(term => {
+      if (term.length == 0) {
+        this.results = [];
+      }
       this.isLoading = true
       this.api.queryRedis(term).subscribe(results => {
         this.results = results
