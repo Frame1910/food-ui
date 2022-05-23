@@ -35,8 +35,8 @@
           (click)="activeProfile = result.value"
         >
           <mat-icon mat-list-icon>restaurant_menu</mat-icon>
+          <div mat-line [innerHTML]="result.value.class_name"></div>
           <div mat-line [innerHTML]="result.value.food_name"></div>
-          <div mat-line [innerHTML]="result.value.food_desc"></div>
         </mat-list-option>
       </mat-selection-list>
     </mat-card>

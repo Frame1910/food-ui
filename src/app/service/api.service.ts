@@ -14,17 +14,9 @@ export interface RedisResponse {
 export interface Food {
   food_name: string,
   food_desc: string,
-  public_food_key?: string,
-  food_profile_id?: string,
-  derivation?: string,
-  sampling_details?: string,
-  nitrogen_factor?: string,
-  fat_factor?: string,
-  specific_gravity?: string,
-  analysed_portion?: string,
-  unanalysed_portion?: string,
-  classification?: string,
-  classification_name?: string
+  class_name: string,
+  entry_type: string,
+  public_food_key: string,
 }
 
 @Injectable({
@@ -38,6 +30,6 @@ export class ApiService {
   ) { }
 
   queryRedis(term: string): Observable<RedisResponse> {
-    return this.http.get<RedisResponse>(`${this.baseUrl}/search?term=${term}`);
+    return this.http.get<RedisResponse>(`${this.baseUrl}/search?term=${encodeURIComponent(term)}`);
   }
 }

@@ -1,6 +1,6 @@
 <mat-card *ngIf="food" class="container">
-  <mat-card-title>{{ food.food_name }}</mat-card-title>
-  <mat-card-subtitle>{{ food.public_food_key }}</mat-card-subtitle>
+  <mat-card-title>{{ food.class_name }}</mat-card-title>
+  <mat-card-subtitle>{{ food.entry_type }}</mat-card-subtitle>
   <mat-card-content style="overflow-y: auto; max-height: 60vh">
     <div *ngFor="let field of parsed">
       <p>
