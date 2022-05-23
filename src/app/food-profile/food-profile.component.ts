@@ -23,7 +23,6 @@ export class FoodProfileComponent implements OnInit, OnChanges {
   update() {
     if (this.food) {
       this.parsed = Object.entries(this.food);
-      console.log(this.parsed);
     }
   }
 
