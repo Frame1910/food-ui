@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
-import { ApiService, Food } from '../service/api.service';
+import { ApiService, Food, RedisDocument } from '../service/api.service';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +10,8 @@ import { ApiService, Food } from '../service/api.service';
 })
 export class SearchComponent implements OnInit {
   term = new FormControl('');
-  results: Array<Food> = [];
+  results: Array<RedisDocument> = [];
+  totalResults: number = 0;
   isLoading: boolean = false;
 
   activeProfile: Food | undefined;
@@ -21,7 +22,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.term.valueChanges.pipe(
-      debounceTime(400),
+      debounceTime(0),
     ).subscribe(term => {
       if (term.length == 0) {
         this.results = [];
@@ -29,7 +30,8 @@ export class SearchComponent implements OnInit {
       }
       this.isLoading = true
       this.api.queryRedis(term).subscribe(results => {
-        this.results = results
+        this.results = results.documents
+        this.totalResults = results.total
         this.isLoading = false;
       });
     })

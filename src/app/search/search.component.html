@@ -26,17 +26,17 @@
 
 <div class="panel-container">
   <div class="center-container">
-    <mat-card *ngIf="results.length > 0">
+    <mat-card *ngIf="totalResults > 0">
       <mat-card-title>Results</mat-card-title>
       <mat-card-subtitle>{{ results.length }} results</mat-card-subtitle>
       <mat-selection-list class="results" [multiple]="false">
         <mat-list-option
           *ngFor="let result of results"
-          (click)="activeProfile = result"
+          (click)="activeProfile = result.value"
         >
           <mat-icon mat-list-icon>restaurant_menu</mat-icon>
-          <div mat-line>{{ result.food_name }}</div>
-          <div mat-line>{{ result.food_description }}</div>
+          <div mat-line [innerHTML]="result.value.food_name"></div>
+          <div mat-line [innerHTML]="result.value.food_desc"></div>
         </mat-list-option>
       </mat-selection-list>
     </mat-card>
