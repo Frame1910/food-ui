@@ -13,6 +13,8 @@ export class SearchComponent implements OnInit {
   results: Array<Food> = [];
   isLoading: boolean = false;
 
+  activeProfile: Food | undefined;
+
   constructor(
     private api: ApiService,
   ) { }
@@ -23,6 +25,7 @@ export class SearchComponent implements OnInit {
     ).subscribe(term => {
       if (term.length == 0) {
         this.results = [];
+        this.activeProfile = undefined
       }
       this.isLoading = true
       this.api.queryRedis(term).subscribe(results => {

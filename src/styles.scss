@@ -11,20 +11,20 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$redisTest-primary: mat.define-palette(mat.$indigo-palette);
-$redisTest-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$food-api-primary: mat.define-palette(mat.$indigo-palette);
+$food-api-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$redisTest-warn: mat.define-palette(mat.$red-palette);
+$food-api-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$redisTest-theme: mat.define-light-theme(
+$food-api-theme: mat.define-light-theme(
   (
     color: (
-      primary: $redisTest-primary,
-      accent: $redisTest-accent,
-      warn: $redisTest-warn,
+      primary: $food-api-primary,
+      accent: $food-api-accent,
+      warn: $food-api-warn,
     ),
   )
 );
@@ -32,7 +32,7 @@ $redisTest-theme: mat.define-light-theme(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($redisTest-theme);
+@include mat.all-component-themes($food-api-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -44,4 +44,11 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  min-width: 30vw;
+  margin: 20px;
 }

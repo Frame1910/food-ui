@@ -4,8 +4,10 @@
 .center-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100vw;
   margin-top: 40px;
+  flex-direction: column;
 }
 .results {
   width: 60vw;
@@ -38,7 +40,14 @@
   }
 
   &:focus-within {
-    outline: 1px solid map-get($redisTest-primary, 600);
+    outline: 1px solid map-get($food-api-primary, 600);
     @include mat.elevation(8);
   }
+}
+
+.panel-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
