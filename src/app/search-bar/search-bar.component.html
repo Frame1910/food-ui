@@ -35,6 +35,7 @@
         tabindex="{{ index }}"
         style="border-radius: 25px"
         (keyup.enter)="route(result)"
+        [routerLink]="[result.id]"
       >
         <div
           mat-line

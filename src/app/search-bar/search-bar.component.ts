@@ -39,7 +39,7 @@ export class SearchBarComponent implements OnInit {
     this.searchInput.valueChanges.pipe(
       debounceTime(300),
     ).subscribe(term => {
-      this.apiService.queryRedis(term).subscribe(results => {
+      this.apiService.queryFoods(term).subscribe(results => {
         this.searchResults = results;
       })
     });
