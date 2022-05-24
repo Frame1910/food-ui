@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime } from 'rxjs';
+import { debounceTime, map, Observable } from 'rxjs';
 import { ApiService, RedisDocument, RedisResponse } from '../service/api.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { ApiService, RedisDocument, RedisResponse } from '../service/api.service
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
+  @Output() hideOnBlur = new EventEmitter<boolean>();
+
   searchInput = new FormControl('');
 
   searchResults: RedisResponse | undefined;
@@ -19,9 +22,15 @@ export class SearchBarComponent implements OnInit {
 
   resultsBlurred: boolean = false;
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.HandsetPortrait)
+    .pipe(
+      map(result => result.matches)
+    );
+
   constructor(
     private apiService: ApiService,
     private router: Router,
+    private breakpointObserver: BreakpointObserver,
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +66,9 @@ export class SearchBarComponent implements OnInit {
     }
     else if (this.searchBarRef && !this.searchBarRef.nativeElement.contains(event.relatedTarget)) {
       this.resultsBlurred = true;
+      if (this.isHandset$) {
+        this.hideOnBlur.emit(this.resultsBlurred);
+      }
     }
   }
 

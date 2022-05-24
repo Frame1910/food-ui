@@ -1,6 +1,15 @@
-<div class="bar-container" #searchBar>
+<div
+  class="bar-container {{
+    (isHandset$ | async) ? 'bar-container-responsive' : ''
+  }}"
+  #searchBar
+>
   <!-- Search input and icon(s) -->
-  <div class="search-input-container">
+  <div
+    class="search-input-container {{
+      (isHandset$ | async) ? 'search-input-container-responsive' : ''
+    }}"
+  >
     <mat-icon class="bar-icon">search</mat-icon>
     <input
       [formControl]="searchInput"
@@ -10,6 +19,7 @@
       (focus)="focusHandler($event)"
       (keyup.escape)="blurHandler('key')"
       #inputElement
+      autofocus
     />
   </div>
 

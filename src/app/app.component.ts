@@ -10,10 +10,12 @@ import { map, Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'Food & Nutrient Search';
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.HandsetPortrait)
     .pipe(
       map(result => result.matches)
     );
+
+  showSearchBar: boolean = false;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
