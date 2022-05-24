@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
@@ -13,6 +13,11 @@ export class SearchBarComponent implements OnInit {
   searchInput = new FormControl('');
 
   searchResults: RedisResponse | undefined;
+
+  @ViewChild('searchBar') searchBarRef: ElementRef | undefined;
+  @ViewChild('inputElement') input: ElementRef | undefined;
+
+  resultsBlurred: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -35,6 +40,24 @@ export class SearchBarComponent implements OnInit {
 
   hasHighlights(field: string): boolean {
     return field.includes('<b>')
+  }
+
+  get isResultsShowing() {
+    return (this.searchResults && this.searchResults.documents.length > 0) && !this.resultsBlurred
+  }
+
+  focusHandler(event: FocusEvent) {
+    this.resultsBlurred = false;
+  }
+
+  blurHandler(event: FocusEvent | string) {
+    if (typeof event == 'string') {
+      this.resultsBlurred = true;
+      this.input!.nativeElement.blur()
+    }
+    else if (this.searchBarRef && !this.searchBarRef.nativeElement.contains(event.relatedTarget)) {
+      this.resultsBlurred = true;
+    }
   }
 
 }

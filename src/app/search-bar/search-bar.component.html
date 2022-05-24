@@ -1,16 +1,24 @@
-<div class="bar-container">
+<div class="bar-container" #searchBar>
   <!-- Search input and icon(s) -->
   <div class="search-input-container">
     <mat-icon class="bar-icon">search</mat-icon>
-    <input [formControl]="searchInput" class="bar-input" placeholder="Search" />
+    <input
+      [formControl]="searchInput"
+      class="bar-input"
+      placeholder="Search"
+      (blur)="blurHandler($event)"
+      (focus)="focusHandler($event)"
+      (keyup.escape)="blurHandler('key')"
+      #inputElement
+    />
   </div>
 
   <!-- Search results pane -->
-  <div class="search-results-container" *ngIf="searchResults">
+  <div class="search-results-container" *ngIf="isResultsShowing">
     <mat-nav-list [disableRipple]="true">
       <mat-list-item
         *ngFor="
-          let result of searchResults.documents;
+          let result of searchResults!.documents;
           let index;
           as: indexOfElement
         "
