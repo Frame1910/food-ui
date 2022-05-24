@@ -1,4 +1,28 @@
 <div class="bar-container">
-  <mat-icon class="bar-icon">search</mat-icon>
-  <input [formControl]="searchInput" class="bar-input" placeholder="Search" />
+  <!-- Search input and icon(s) -->
+  <div class="search-input-container">
+    <mat-icon class="bar-icon">search</mat-icon>
+    <input [formControl]="searchInput" class="bar-input" placeholder="Search" />
+  </div>
+
+  <!-- Search results pane -->
+  <div class="search-results-container" *ngIf="searchResults">
+    <mat-nav-list [disableRipple]="true">
+      <mat-list-item
+        *ngFor="
+          let result of searchResults.documents;
+          let index;
+          as: indexOfElement
+        "
+        tabindex="{{ index }}"
+        style="border-radius: 25px"
+        (keyup.enter)="route(result)"
+      >
+        <div
+          [innerHTML]="result.value.food_name"
+          style="text-overflow: ellipsis; overflow-x: hidden"
+        ></div>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
 </div>
