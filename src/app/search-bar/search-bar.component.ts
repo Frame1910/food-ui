@@ -33,4 +33,8 @@ export class SearchBarComponent implements OnInit {
     console.log(data)
   }
 
+  hasHighlights(field: string): boolean {
+    return field.includes('<b>')
+  }
+
 }

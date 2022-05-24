@@ -19,8 +19,27 @@
         (keyup.enter)="route(result)"
       >
         <div
+          mat-line
           [innerHTML]="result.value.food_name"
           style="text-overflow: ellipsis; overflow-x: hidden"
+        ></div>
+        <div
+          mat-line
+          [innerHTML]="result.value.food_desc"
+          style="text-overflow: ellipsis; overflow-x: hidden"
+          *ngIf="
+            hasHighlights(result.value.food_desc) &&
+            !hasHighlights(result.value.food_name)
+          "
+        ></div>
+        <div
+          mat-line
+          [innerHTML]="result.value.class_name"
+          style="text-overflow: ellipsis; overflow-x: hidden"
+          *ngIf="
+            hasHighlights(result.value.class_name) &&
+            !hasHighlights(result.value.food_name)
+          "
         ></div>
       </mat-list-item>
     </mat-nav-list>
