@@ -1,0 +1,75 @@
+<div
+  class="bar-container {{
+    (isHandset$ | async) ? 'bar-container-responsive' : ''
+  }}"
+  #searchBar
+>
+  <!-- Search input and icon(s) -->
+  <div
+    class="search-input-container {{
+      (isHandset$ | async) ? 'search-input-container-responsive' : ''
+    }}"
+  >
+    <mat-icon class="bar-icon">search</mat-icon>
+    <input
+      [formControl]="searchInput"
+      class="bar-input"
+      placeholder="Search"
+      (blur)="blurHandler($event)"
+      (focus)="focusHandler($event)"
+      (keyup.escape)="blurHandler('key')"
+      #inputElement
+      autofocus
+    />
+    <button
+      mat-icon-button
+      *ngIf="searchInput.value.length > 0"
+      (click)="searchInput.setValue('')"
+      style="margin-left: auto; margin-right: 15px"
+    >
+      <mat-icon style="color: black">clear</mat-icon>
+    </button>
+  </div>
+
+  <!-- Search results pane -->
+  <div class="search-results-container" *ngIf="isResultsShowing">
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="
+          let result of searchResults!.documents;
+          let index;
+          as: indexOfElement
+        "
+        tabindex="{{ index }}"
+        (keyup.enter)="route(result)"
+        [routerLink]="[result.id]"
+        (click)="resultsBlurred = true"
+      >
+        <div
+          mat-line
+          [innerHTML]="result.value.food_name"
+          style="text-overflow: ellipsis; overflow-x: hidden"
+        ></div>
+        <div
+          mat-line
+          [innerHTML]="result.value.food_desc"
+          style="text-overflow: ellipsis; overflow-x: hidden"
+          *ngIf="
+            hasHighlights(result.value.food_desc) &&
+            !hasHighlights(result.value.food_name)
+          "
+        ></div>
+        <div
+          mat-line
+          [innerHTML]="result.value.class_name"
+          style="text-overflow: ellipsis; overflow-x: hidden"
+          *ngIf="
+            hasHighlights(result.value.class_name) &&
+            !hasHighlights(result.value.food_name)
+          "
+        ></div>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+</div>
+<p class="mat-caption">{{ version }}</p>

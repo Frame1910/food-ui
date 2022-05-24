@@ -1,0 +1,32 @@
+<div
+  *ngIf="food"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 64px);
+  "
+>
+  <mat-card style="width: 50%">
+    <mat-card-title>
+      {{ food.food_name }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ food.public_food_key }}
+    </mat-card-subtitle>
+    <mat-card-content class="profile">
+      <div class="field-row">
+        <p><b>Food Class:</b></p>
+        <p>{{ food.classification_name }}</p>
+      </div>
+      <div class="field-row">
+        <p><b>Food Description:</b></p>
+        <p>{{ food.food_description }}</p>
+      </div>
+      <div class="field-row">
+        <p><b>Sampling Details:</b></p>
+        <p>{{ food.sampling_details }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

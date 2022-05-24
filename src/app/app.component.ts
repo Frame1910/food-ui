@@ -1,4 +1,6 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'food-api';
+  title = 'Food & Nutrient Search';
 
-  constructor() {}
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.HandsetPortrait)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  showSearchBar: boolean = false;
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+  ) {}
 
   ngOnInit(): void {}
 }
