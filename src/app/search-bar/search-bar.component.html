@@ -21,11 +21,19 @@
       #inputElement
       autofocus
     />
+    <button
+      mat-icon-button
+      *ngIf="searchInput.value.length > 0"
+      (click)="searchInput.setValue('')"
+      style="margin-left: auto; margin-right: 15px"
+    >
+      <mat-icon style="color: black">clear</mat-icon>
+    </button>
   </div>
 
   <!-- Search results pane -->
   <div class="search-results-container" *ngIf="isResultsShowing">
-    <mat-nav-list [disableRipple]="true">
+    <mat-nav-list>
       <mat-list-item
         *ngFor="
           let result of searchResults!.documents;
@@ -33,9 +41,9 @@
           as: indexOfElement
         "
         tabindex="{{ index }}"
-        style="border-radius: 25px"
         (keyup.enter)="route(result)"
         [routerLink]="[result.id]"
+        (click)="resultsBlurred = true"
       >
         <div
           mat-line
