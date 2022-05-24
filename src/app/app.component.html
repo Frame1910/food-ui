@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button *ngIf="isHandset$ | async">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Food & Nutrient Database</span>
+  <app-search-bar></app-search-bar>
+  <span class="spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

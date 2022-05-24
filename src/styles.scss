@@ -11,8 +11,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$food-api-primary: mat.define-palette(mat.$indigo-palette);
-$food-api-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$food-api-primary: mat.define-palette(mat.$light-blue-palette);
+$food-api-accent: mat.define-palette(mat.$red-palette, A100);
 
 // The warn palette is optional (defaults to red).
 $food-api-warn: mat.define-palette(mat.$red-palette);
