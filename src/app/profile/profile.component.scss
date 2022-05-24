@@ -1,0 +1,10 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-row {
+  display: grid;
+  grid-template-rows: fit-content;
+  grid-template-columns: 150px auto;
+}
