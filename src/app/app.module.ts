@@ -9,6 +9,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {LayoutModule} from '@angular/cdk/layout';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,14 +19,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FoodProfileComponent } from './food-profile/food-profile.component';
-import { SearchComponent } from './search/search.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FoodProfileComponent,
-    SearchComponent,
+    SearchBarComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,10 @@ import { SearchComponent } from './search/search.component';
     MatListModule,
     MatIconModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    LayoutModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

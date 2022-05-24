@@ -1,2 +1,27 @@
-<h1 style="text-align: center; margin-top: 25px">Food & Nutrient Search</h1>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <span>Food & Nutrient Database</span>
+  <app-search-bar
+    *ngIf="!(isHandset$ | async) || ((isHandset$ | async) && showSearchBar)"
+    (hideOnBlur)="showSearchBar = false"
+  ></app-search-bar>
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    *ngIf="isHandset$ | async"
+    (click)="showSearchBar = true"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<div style="margin: 10px">
+  <router-outlet></router-outlet>
+</div>
