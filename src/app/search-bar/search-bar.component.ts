@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, map, Observable } from 'rxjs';
 import { ApiService, RedisDocument, RedisResponse } from '../service/api.service';
+import packageJson from '../../../package.json';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,6 +13,7 @@ import { ApiService, RedisDocument, RedisResponse } from '../service/api.service
 })
 export class SearchBarComponent implements OnInit {
   @Output() hideOnBlur = new EventEmitter<boolean>();
+  version = packageJson.version;
 
   searchInput = new FormControl('');
 
