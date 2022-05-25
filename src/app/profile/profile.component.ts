@@ -2,7 +2,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { ApiService, Food, Nutrient } from '../service/api.service';
+import { Food, Nutrient } from '../models';
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-profile',

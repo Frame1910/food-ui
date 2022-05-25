@@ -3,8 +3,9 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, map, Observable } from 'rxjs';
-import { ApiService, Food, FoodSearch, RedisDocument, RedisResponse } from '../service/api.service';
+import { ApiService } from '../service/api.service';
 import packageJson from '../../../package.json';
+import { RedisResponse, FoodSearch, RedisDocument } from '../models';
 
 @Component({
   selector: 'app-search-bar',
