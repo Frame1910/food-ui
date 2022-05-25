@@ -1,32 +1,118 @@
 <div
-  *ngIf="food"
-  style="
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100% - 64px);
-  "
+  class="{{
+    (isHandset$ | async) ? 'profile-container-responsive' : 'profile-container'
+  }}"
 >
-  <mat-card style="width: 50%">
-    <mat-card-title>
-      {{ food.food_name }}
-    </mat-card-title>
-    <mat-card-subtitle>
-      {{ food.public_food_key }}
-    </mat-card-subtitle>
-    <mat-card-content class="profile">
-      <div class="field-row">
-        <p><b>Food Class:</b></p>
-        <p>{{ food.classification_name }}</p>
-      </div>
-      <div class="field-row">
-        <p><b>Food Description:</b></p>
-        <p>{{ food.food_description }}</p>
-      </div>
-      <div class="field-row">
-        <p><b>Sampling Details:</b></p>
-        <p>{{ food.sampling_details }}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
+  <div *ngIf="food" class="food-container">
+    <mat-card>
+      <mat-card-title>
+        {{ food.food_name }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ food.public_food_key }}
+      </mat-card-subtitle>
+
+      <mat-card-content class="profile">
+        <div class="field-row">
+          <p><b>Food Class:</b></p>
+          <p>{{ food.classification_name }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Food Description:</b></p>
+          <p>{{ food.food_description }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Sampling Details:</b></p>
+          <p>{{ food.sampling_details }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div *ngIf="nutrient">
+    <mat-card>
+      <mat-card-title> Nutrients </mat-card-title>
+      <mat-card-subtitle>
+        {{ nutrient.public_food_key }}
+      </mat-card-subtitle>
+
+      <mat-card-content class="profile">
+        <div class="field-row">
+          <p><b>Energy with dietary fibre equated (kj):</b></p>
+          <p>{{ nutrient.energy_with_dietary_fibre_equated_kj }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Moisture water (g):</b></p>
+          <p>{{ nutrient.moisture_water_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Protein (g):</b></p>
+          <p>{{ nutrient.protein_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Nitrogen (g):</b></p>
+          <p>{{ nutrient.nitrogen_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Fat total g:</b></p>
+          <p>{{ nutrient.fat_total_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Ash (g):</b></p>
+          <p>{{ nutrient.ash_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Total dietary fibre (g):</b></p>
+          <p>{{ nutrient.total_dietary_fibre_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Alcohol (g) :</b></p>
+          <p>{{ nutrient.alcohol_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Fructose (g):</b></p>
+          <p>{{ nutrient.fructose_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Glucose (g):</b></p>
+          <p>{{ nutrient.glucose_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Sucrose (g):</b></p>
+          <p>{{ nutrient.sucroseg }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Maltose (g) :</b></p>
+          <p>{{ nutrient.maltose_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Lactose (g) :</b></p>
+          <p>{{ nutrient.lactose_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Galactose (g) :</b></p>
+          <p>{{ nutrient.galactose_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Maltotrios (g) :</b></p>
+          <p>{{ nutrient.maltotrios_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Total sugars (g) :</b></p>
+          <p>{{ nutrient.total_sugars_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Added sugars (g):</b></p>
+          <p>{{ nutrient.added_sugars_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Free sugars (g):</b></p>
+          <p>{{ nutrient.free_sugars_g }}</p>
+        </div>
+        <div class="field-row">
+          <p><b>Starch (g) :</b></p>
+          <p>{{ nutrient.starch_g }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 
-export interface RedisDocument {
+export interface RedisDocument<Type> {
   id: string,
-  value: FoodSearch,
+  value: Type,
 }
-export interface RedisResponse {
+export interface RedisResponse<Type> {
   total: number,
-  documents: Array<RedisDocument>,
+  documents: Array<RedisDocument<Type>>,
 }
 export interface FoodSearch {
   food_name: string,
@@ -35,6 +35,32 @@ export interface Food {
   classification_name: string
 }
 
+export interface Nutrient {
+  public_food_key: string,
+  classification: string,
+  food_name: string,
+  energy_with_dietary_fibre_equated_kj: string,
+  energy_without_dietary_fibre_equated_kj: string,
+  moisture_water_g: string,
+  protein_g: string,
+  nitrogen_g: string,
+  fat_total_g: string,
+  ash_g: string,
+  total_dietary_fibre_g: string,
+  alcohol_g: string,
+  fructose_g: string,
+  glucose_g: string,
+  sucroseg: string,
+  maltose_g: string,
+  lactose_g: string,
+  galactose_g: string,
+  maltotrios_g: string,
+  total_sugars_g: string,
+  added_sugars_g: string,
+  free_sugars_g: string,
+  starch_g: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,13 +71,16 @@ export class ApiService {
     private http: HttpClient,
   ) { }
 
-  queryFoods(term: string): Observable<RedisResponse> {
-    return this.http.get<RedisResponse>(`${this.baseUrl}/search?term=${encodeURIComponent(term)}`);
+  queryFoods(term: string): Observable<RedisResponse<FoodSearch>> {
+    return this.http.get<RedisResponse<FoodSearch>>(`${this.baseUrl}/search?term=${encodeURIComponent(term)}`);
   }
 
   getFood(index: string): Observable<Food> {
     return this.http.get<Food>(`${this.baseUrl}/${index}`);
   }
 
+  getNutrient(food_key: string): Observable<RedisResponse<Nutrient>> {
+    return this.http.get<RedisResponse<Nutrient>>(`${this.baseUrl}/nutrient/${food_key}`)
+  }
 
 }

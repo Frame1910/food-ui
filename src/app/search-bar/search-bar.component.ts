@@ -3,7 +3,7 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, map, Observable } from 'rxjs';
-import { ApiService, RedisDocument, RedisResponse } from '../service/api.service';
+import { ApiService, Food, FoodSearch, RedisDocument, RedisResponse } from '../service/api.service';
 import packageJson from '../../../package.json';
 
 @Component({
@@ -17,7 +17,7 @@ export class SearchBarComponent implements OnInit {
 
   searchInput = new FormControl('');
 
-  searchResults: RedisResponse | undefined;
+  searchResults: RedisResponse<FoodSearch> | undefined;
 
   @ViewChild('searchBar') searchBarRef: ElementRef | undefined;
   @ViewChild('inputElement') input: ElementRef | undefined;
@@ -45,7 +45,7 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
-  route(data: RedisDocument) {
+  route(data: RedisDocument<FoodSearch>) {
     console.log(data)
   }
 

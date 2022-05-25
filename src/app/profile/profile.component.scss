@@ -8,3 +8,18 @@
   grid-template-rows: fit-content;
   grid-template-columns: 150px auto;
 }
+
+.food-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.profile-container {
+  display: grid;
+  grid-template-columns: auto min-content;
+  gap: 20px;
+}
+.profile-container-responsive {
+  display: grid;
+  gap: 20px;
+}
