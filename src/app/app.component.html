@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" style="position: fixed; top: 0; z-index: 9">
   <span>Food & Nutrient Database</span>
   <app-search-bar
     *ngIf="!(isHandset$ | async) || ((isHandset$ | async) && showSearchBar)"
@@ -22,6 +22,9 @@
     </button>
   </mat-menu>
 </mat-toolbar>
-<div style="margin: 10px; height: 100%">
+<div
+  style="height: 100%"
+  class="{{ (isHandset$ | async) ? 'mobile-margins' : 'normal-margins' }}"
+>
   <router-outlet></router-outlet>
 </div>

@@ -1,3 +1,16 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.margins {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.mobile-margins {
+  @extend .margins;
+  margin-top: 66px;
+}
+.normal-margins {
+  @extend .margins;
+  margin-top: 74px;
+}
